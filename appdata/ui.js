@@ -43,7 +43,7 @@ function clickManager(e){
 
 	if(is(e,'.plugin-options-button')){
 		var pluginname = closest(e,'.plugin-item').getAttribute('plugin');
-		console.log(pluginname);
+		SetPluginBoxSources(plugins._plugins[pluginname].getSources());
 		ResetPluginBox();
 		OpenModal();
 		OpenPluginOptions();
@@ -101,3 +101,12 @@ function ResetPluginBox(){
 	};
 	el.setAttribute('op','1');
 }
+function SetPluginBoxSources(sources){
+	var sc = document.querySelector('.sources-list');
+	//sc.innerHTML = "";
+	for (var i = 0; i < sources.length; i++) {
+		//sc.innerHTML += sources[i];
+	};
+}
+
+

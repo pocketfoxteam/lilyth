@@ -168,3 +168,9 @@ body{
 .plugin-options-box-section[op="1"]{
 	display: block;
 }
+.sources-list{
+	width: 100%;
+	height: calc(100% - 50px);
+	overflow: auto;
+	border-bottom: 1px solid #333;
+}
