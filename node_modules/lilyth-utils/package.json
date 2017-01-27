@@ -1,0 +1,9 @@
+{
+  "name": "lilyth-utils",
+  "version": "1",
+  "description": "lilyth utils for plugins",
+  "main": "index.js",
+  "author": {
+    "name": "Gravyeth"
+  }
+}

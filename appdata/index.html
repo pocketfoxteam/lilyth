@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Lilyth</title>
+	<link rel="stylesheet" type="text/css" href="ui.css">
+	<link rel="stylesheet" type="text/css" href="themes/lilyth-theme.css">
+	<script type="text/javascript" src='basetools.js'></script>
+	<script type="text/javascript" src='pluginmanager.js'></script>
+	<script type="text/javascript" src='ui.js'></script>
+</head>
+<body id="window" class='bz window'>
+	<div class='window-frame'>
+		<div class='window-icon l'></div>
+		<div class='window-title l align-v nosel'>Lilyth</div>
+		<div class='window-controls r'>
+			<div class='window-controls-container r'>
+				<div class='window-controls-btn bz l minwindow align-v align-h nosel' >&#xF068;</div>
+				<div class='window-controls-btn bz l maxwindow align-v align-h nosel' >&#xF067;</div>
+				<div class='window-controls-btn bz l closewindow align-v align-h nosel' >&#xF00D;</div>
+			</div>
+		</div>
+	</div>
+	<div class='window-content'>
+		<div class='window-sidebar'>
+			<div class='plugin-list nosel'>
+				
+			</div>
+		</div>
+	</div>
+	<div class='window-player-controls'>
+		<div class='track-thumbnail l'></div>
+		<div class='track-info-container l'>
+			<div class='track-info'>
+				<div class='track-name'>--</div>
+				<div class='track-author'>--</div>
+			</div>
+			<div class='track-progress'></div>
+		</div>
+		<div class='player-controls r nosel'>
+			<div class='player-controls-cl l'>
+				<div class='player-common-control player-ctrl-repeat l bz'>&#xF079;</div>
+			</div>
+			<div class='player-controls-cm l'>
+				<div class='player-common-control player-ctrl-prev l bz'>&#xF04A;</div>
+				<div class='player-common-control player-ctrl-play l bz' state="1">&#xF04B;</div>
+				<div class='player-common-control player-ctrl-pause l bz' state="0">&#xF04C;</div>
+				<div class='player-common-control player-ctrl-next l bz'>&#xF04E;</div>
+			</div>
+			<div class='player-controls-cr l'>
+				<div class='player-common-control player-ctrl-shuffle l bz'>&#xF074;</div>
+			</div>
+		</div>
+	</div>
+	<div class='window-modal' op="0">
+		<div class='plugin-options-box'>
+			<div class='plugin-options-box-sidebar l bz nosel'>
+				<div class='plugin-options-box-sidebar-title'>
+					Plugin Options
+				</div>
+				<div>
+					<div class='plugin-options-box-sidebar-button' target="general">General</div>
+					<div class='plugin-options-box-sidebar-button' target="sources">Sources</div>
+				</div>
+				<div>
+					<button class='plugin-options-box-close'>Close</button>
+				</div>
+			</div>
+			<div class='plugin-options-box-sections r'>
+				<div class='plugin-options-box-section' sid="general" op="1">a</div>
+				<div class='plugin-options-box-section' sid="sources" op="0">b</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+*.ns
+*.cache
+playlists
+*.log
+bgcache/

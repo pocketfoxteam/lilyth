@@ -1,0 +1,170 @@
+@font-face {
+	font-family: 'FontAwesome';
+	src: url('fonts/fontawesome-webfont.eot?v=4.1.0');
+	src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'), url('fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+	font-weight: normal;font-style: normal;
+}
+
+.l{float: left;}
+.r{float: right;}
+.abs{position: absolute;}
+.bz{box-sizing: border-box;-webkit-box-sizing: border-box;}
+.nosel{-webkit-user-select: none;cursor: default;}
+.ovf{overflow: hidden;}
+.allh{height: 100%;}
+*{margin: 0px;font-family: 'FontAwesome', sans-serif;}
+::selection {
+	/*background: rgba(246, 99, 165, 0.76);*/
+}
+.align-v{
+	display: flex;
+	align-items: center; /* align vertical */
+}
+.align-h{
+	display: flex;
+	justify-content: center; /* align horizontal */
+}
+/* Let's get this party started */
+::-webkit-scrollbar {
+	width: 8px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+	background-color: #CCC;
+	border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: #FF66AA;
+}
+body{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: hidden;
+}
+.window-frame{
+	-webkit-app-region: drag;
+	-webkit-user-select: none;
+}
+.window-icon{
+	-webkit-app-region: drag;
+	pointer-events: none;
+	background: url("img/lilyth_logo.png") 100% 100%;
+	background-size: 70%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.window-title{
+	-webkit-app-region: drag;
+	height: 100%;
+}
+.window-controls-btn{
+	-webkit-app-region: no-drag;
+}
+.window-controls-btn:hover{
+	background-color: rgba(255,255,255,0.1);
+	color: #FFF;
+}
+
+.window-frame-separator{
+	border-left: 1px solid rgba(255,255,255,0.5);
+	border-right: 1px solid rgba(0,0,0,0.2);
+	width: 2px;
+	height: 100%;
+	margin: 10px 5px 0px 5px;
+}
+
+.window-modal{
+	position: absolute;
+	top: 50px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background-color: rgba(20,20,20,0.7);
+	z-index: 10;
+	display: none;
+}
+.window-modal[op="1"]{
+	display: block;
+}
+
+.player-controls{
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+}
+
+.player-common-control{
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+}
+
+.player-controls-cl,.player-controls-cm,.player-controls-cr{
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+}
+.player-ctrl-play[state="0"],.player-ctrl-pause[state="0"]{
+	display: none;
+}
+.plugin-name{
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+	height: 100%;
+}
+.plugin-options-button{
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+}
+.plugin-options-box{
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	display: none;
+}
+.plugin-options-box[op="1"]{
+	display: block;
+}
+.plugin-options-box-sidebar{
+	position: relative;
+	width: 250px;
+	height: 100%;
+}
+.plugin-options-box-sidebar-button{
+	display: flex;
+	align-items: center; /* align vertical */
+}
+.plugin-options-box-close{
+	position: absolute;
+	bottom: 10px;
+	left: 0px;
+	right: 0px;
+	width: 80%;
+	margin: auto;
+}
+.plugin-options-box-sections{
+	position: relative;
+	width: calc(100% - 251px);
+	height: 100%;
+}
+
+.plugin-options-box-section{
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+.plugin-options-box-section[op="1"]{
+	display: block;
+}
