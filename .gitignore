@@ -3,3 +3,4 @@
 playlists
 *.log
 bgcache/
+build/
