@@ -23,28 +23,33 @@ lilyth.addSource = function(s,success,error){
 		if(fs.existsSync(s)){
 			var stat = fs.lstatSync(s);
 			if(stat.isDirectory()){
-				lilyth.sources.push(s);
-				utils.saveData('sources',lilyth.sources);
-				if(typeof success != "undefined"){success();}
+				if(lilyth.sources.indexOf(s) < 0){
+					lilyth.sources.push(s);
+					utils.saveData('sources',lilyth.sources);
+					if(typeof success != "undefined"){success("Source added");}
+				}else{
+					if(typeof error != "undefined"){error("The source already exists");}else{console.error("The source already exists");}
+				}
 			}
+		}else{
+			if(typeof error != "undefined"){error("The source not exists");}else{console.error("The source not exists");}
 		}
 	}catch(e){
-		if(typeof error != "undefined"){error();}else{console.error(e.stack);}
+		if(typeof error != "undefined"){error("The source is invalid");}else{console.error(e.stack);}
 	}
 }
 lilyth.removeSource = function(s,success,error){
 	try{
-		if(fs.existsSync(s)){
-			var stat = fs.lstatSync(s);
-			if(stat.isDirectory()){
-				var iof = lilyth.sources.indexOf(s);
-				lilyth.sources.splice(iof,1);
-				utils.saveData('sources',lilyth.sources);
-				if(typeof success != "undefined"){success();}
-			}
+		var iof = lilyth.sources.indexOf(s);
+		if(iof >= 0){
+			lilyth.sources.splice(iof,1);
+			utils.saveData('sources',lilyth.sources);
+			if(typeof success != "undefined"){success("Source removed");}else{console.log("Source removed");}
+		}else{
+			if(typeof error != "undefined"){error("The source not exists");}else{console.error("The source not exists");}
 		}
 	}catch(e){
-		if(typeof error != "undefined"){error();}else{console.error(e.stack);}
+		if(typeof error != "undefined"){error("Unknown error");}else{console.error(e.stack);}
 	}
 }
 lilyth.getSources = function(){

@@ -43,10 +43,10 @@ function clickManager(e){
 
 	if(is(e,'.plugin-options-button')){
 		var pluginname = closest(e,'.plugin-item').getAttribute('plugin');
-		console.log(pluginname);
+		SetPluginBoxSources(plugins._plugins[pluginname].getSources());
 		ResetPluginBox();
 		OpenModal();
-		OpenPluginOptions();
+		OpenPluginOptions(pluginname);
 	}
 	if(is(e,'.plugin-options-box-close')){
 		ClosePluginOptions();
@@ -60,6 +60,30 @@ function clickManager(e){
 			els[i].setAttribute('op','0');
 		};
 		el.setAttribute('op','1');
+	}
+	if(is(e,'.addsource')){
+		var pluginname = closest(e,'.plugin-options-box').getAttribute('plugin');
+		var iel = document.querySelector('.source-ibox');
+		var sourceinput = iel.value;
+		iel.value = "";
+		plugins._plugins[pluginname].addSource(sourceinput,function(m){
+			SetPluginBoxSources(plugins._plugins[pluginname].getSources());
+			alert(m);
+		},function(e){
+			SetPluginBoxSources(plugins._plugins[pluginname].getSources());
+			alert(e);
+		})
+	}
+	if(is(e,'.removesrc')){
+		var pluginname = closest(e,'.plugin-options-box').getAttribute('plugin');
+		var source = atobU(closest(e,'.source').getAttribute('source'));
+		plugins._plugins[pluginname].removeSource(source,function(m){
+			SetPluginBoxSources(plugins._plugins[pluginname].getSources());
+			alert(m);
+		},function(e){
+			SetPluginBoxSources(plugins._plugins[pluginname].getSources());
+			alert(e);
+		})
 	}
 
 }
@@ -87,8 +111,9 @@ function OpenModal(){
 function CloseModal(){
 	ui.modal.setAttribute('op','0');
 }
-function OpenPluginOptions(){
+function OpenPluginOptions(plugin){
 	ui.pluginoptions.setAttribute('op','1');
+	ui.pluginoptions.setAttribute('plugin',plugin);
 }
 function ClosePluginOptions(){
 	ui.pluginoptions.setAttribute('op','0');
@@ -101,3 +126,20 @@ function ResetPluginBox(){
 	};
 	el.setAttribute('op','1');
 }
+function SetPluginBoxSources(sources){
+	var sc = document.querySelector('.sources-list');
+	sc.innerHTML = "";
+	for (var i = 0; i < sources.length; i++) {
+		sc.innerHTML += 
+		"<div class='source bz' source='"+btoaU(sources[i])+"'>"+
+		"	<div class='l'>"+sources[i]+"</div>"+
+		"	<div class='r nosel'>"+
+		"		<div class='l removesrc'>&#xF00D;</div>"+
+		"	</div>"+
+		"</div>";
+	};
+}
+function AddSourceToPlugin(p,s){
+	//plugins._plugins[pluginname]
+}
+
