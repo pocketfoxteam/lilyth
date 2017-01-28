@@ -4,3 +4,5 @@ playlists
 *.log
 bgcache/
 build/
+node_modules/
+gendata/
