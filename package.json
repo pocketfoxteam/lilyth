@@ -18,7 +18,6 @@
 		"extract-zip" : "latest",
 		"follow-redirects" : "latest",
 		"fs.extra" : "latest",
-		"taglib2" : "latest",
 		"lilyth-utils" : "git://github.com/pocketfoxteam/lilyth-utils#master"
  	},
  	"repository" : { 
