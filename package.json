@@ -18,8 +18,8 @@
 		"extract-zip" : "latest",
 		"follow-redirects" : "latest",
 		"fs.extra" : "latest",
-		"taglib2" : "latest",
-		"lilyth-utils" : "git://github.com/pocketfoxteam/lilyth-utils#master"
+		"lilyth-utils" : "git://github.com/pocketfoxteam/lilyth-utils#master",
+		"nodetaglib" : "git://github.com/pocketfoxteam/nodetaglib#master"
  	},
  	"repository" : { 
 		"type" : "git", "url" : "https://github.com/pocketfoxteam/lilyth.git"

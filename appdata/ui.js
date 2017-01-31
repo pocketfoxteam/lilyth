@@ -2,6 +2,12 @@
 
 var debug = true;
 var ui = {};
+var pluginslist = [];
+var selected_plugin = "";
+var media_list_hash = "";
+var playing_media = "";
+var playing_media_plugin = "";
+var selected_media = "";
 
 //Main window
 var main_window = {};
@@ -23,12 +29,17 @@ window.addEventListener('load',function(){
 	loadElements();
 	plugins.init();
 	pluginsShowInSidebar();
+	selected_plugin = pluginslist[0][0];
+	DisplayMediaItems();
 	window.addEventListener('keypress',function(e){
 		if(e.keyCode == 32 && document.activeElement.nodeName != "INPUT"){
 			
 			e.preventDefault();
 		}
 	})
+	setInterval(function(){
+		DisplayMediaItems();
+	},1000)
 });
 
 function loadElements(){
@@ -85,17 +96,29 @@ function clickManager(e){
 			alert(e);
 		})
 	}
-
+	if(isclosest(e,'.media-item')){
+		var trackhash = closest(e,'.media-item').getAttribute('track');
+		selected_media = trackhash;
+		SelectMediaItem(trackhash);
+		if(e.detail == 2){
+			Play(trackhash);
+		}
+	}
+	if(isclosest(e,'.plugin-item') && !is(e,'.plugin-options-button')){
+		var pluginname = closest(e,'.plugin-item').getAttribute('plugin');
+		selected_plugin = pluginname;
+		DisplayMediaItems();
+	}
 }
 
 function pluginsShowInSidebar(){
-	var plgs = plugins.getList();
+	pluginslist = plugins.getList();
 	var ilist = "";
-	for (var i = 0; i < plgs.length; i++) {
-		ilist+= "<div class='plugin-item' plugin='"+plgs[i][0]+"'>"+
+	for (var i = 0; i < pluginslist.length; i++) {
+		ilist+= "<div class='plugin-item' plugin='"+pluginslist[i][0]+"'>"+
 				"	<div class='l ovf allh'>"+
-				"		<div class='plugin-icon l' style='background-image: url(\"plugins/"+plgs[i][0]+"/"+plgs[i][2]+"\");'></div>"+
-				"		<div class='plugin-name l'>"+plgs[i][1]+"</div>"+
+				"		<div class='plugin-icon l' style='background-image: url(\"plugins/"+pluginslist[i][0]+"/"+pluginslist[i][2]+"\");'></div>"+
+				"		<div class='plugin-name l'>"+pluginslist[i][1]+"</div>"+
 				"	</div>"+
 				"	<div class='r ovf allh'>"+
 				"		<div class='plugin-options-button l bz'>&#xF013;</div>"+
@@ -139,7 +162,44 @@ function SetPluginBoxSources(sources){
 		"</div>";
 	};
 }
-function AddSourceToPlugin(p,s){
-	//plugins._plugins[pluginname]
+function DisplayMediaItems(w,fu){
+	var w = selected_plugin;
+	var fu = (typeof fu != "undefined")? fu:false;
+	var list = plugins._plugins[w].list();
+	var hash = btoaU(JSON.stringify(list));
+	if(hash == media_list_hash && !fu){
+		return false;
+	}
+	media_list_hash = hash;
+	var ht = "";
+	for (track in list) {
+		var fields = "";
+		for (var i = 0; i < plugins._plugins[w].default_order.length; i++) {
+			var key = plugins._plugins[w].default_order[i];
+			fields +="<div class='plugin-content-column custom_"+key+"' primary='"+((i==0)? 'true':'false')+"' >"+list[track][key]+"</div>";
+		};
+		var bta = btoaU(track);
+		ht += 
+			"<div class='media-item' sel='"+((bta == selected_media)? 1:0)+"' playing='0' track='"+bta+"'>"+
+			fields+
+			"</div>";
+	};
+	document.querySelector('.plugin-content-items').innerHTML = ht;
 }
 
+function SelectMediaItem(t){
+	var els = document.querySelectorAll('.media-item');
+	var el = document.querySelector('.media-item[track="'+t+'"]');
+	for (var i = 0; i < els.length; i++) {
+		els[i].setAttribute('sel','0');
+	};
+	el.setAttribute('sel','1');
+}
+
+function Play(w){
+	playing_media_plugin = selected_plugin;
+	playing_media = w;
+	var src = atobU(w);
+	audio.src = src;
+	audio.play();
+}
